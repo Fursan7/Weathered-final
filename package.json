@@ -1,0 +1,21 @@
+{
+  "name": "weathered",
+  "version": "1.0.0",
+  "description": "A weather app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahmad Thakur",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "geoip-lite": "^1.4.2",
+    "geolocation": "^0.2.0",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "node-geolite2": "^0.1.7"
+  }
+}
