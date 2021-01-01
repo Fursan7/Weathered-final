@@ -15,6 +15,7 @@
     "geoip-lite": "^1.4.2",
     "geolocation": "^0.2.0",
     "moment": "^2.29.1",
+    "mongoose": "^5.11.9",
     "node-fetch": "^2.6.1",
     "node-geolite2": "^0.1.7"
   }

@@ -25,11 +25,65 @@ let minTemp = "";
 let maxTemp = "";
 let ip = "";
 
+const mongoose = require("mongoose");
+
+const connectionString =
+  "mongodb+srv://1234:DxZJ0OFiLFOTi3ey@cluster0.wlaov.mongodb.net/<dbname>?retryWrites=true&w=majority";
+mongoose.connect(connectionString, { useNewUrlParser: true });
+
+const loginSchema = {
+  username: String, // String is shorthand for {type: String}
+  password: String,
+};
+
+const Login = mongoose.model("logins", loginSchema);
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
+  res.render("register");
+});
+
+app.post("/register", (req, res) => {
+  let user = req.body.username;
+  let pass = req.body.password;
+
+  const newLogin = new Login({ username: user, password: pass });
+  newLogin.save();
+
+  res.redirect("/signin");
+});
+
+app.get("/signin", function (req, res) {
+  res.render("signin");
+});
+
+app.post("/auth", (req, res) => {
+  let user = req.body.username;
+  let pass = req.body.password;
+
+  Login.findOne({username: user}, function(err, user){
+    console.log(user);
+    if(!(user === null))
+    {
+      if(user.password === pass){
+        res.redirect("/location")
+      }
+      else {
+        res.send("Wrong password");
+      }
+    }
+    else {
+      res.send("user not found");
+    }
+  })
+    
+});
+
+app.get("/location", (req, res) => {
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   console.log(ip);
@@ -82,7 +136,7 @@ app.post("/weather", (req, res) => {
 
   function handleErrors(response) {
     if (!response.ok) {
-      throw Error(response.statusText).then(res.redirect("/"));
+      throw Error(response.statusText).then(res.redirect("/location"));
     }
     return response;
   }
