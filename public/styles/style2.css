@@ -16,14 +16,14 @@ EDIT ON
 
     .t1 {
         padding-top: 20px;
-        color: black;
+        color: #c41010;
         font-family: 'Ubuntu', sans-serif;
-        font-weight: bold;
+        font-weight: bolder;
         font-size: 30px;
     }
     
     .sign {
-        padding-top: 20px;
+        padding-top: 15px;
         color: #8C55AA;
         font-family: 'Ubuntu', sans-serif;
         font-weight: bold;
@@ -51,7 +51,7 @@ EDIT ON
     }
     
     form.form1 {
-        padding-top: 40px;
+        padding-top: 15px;
     }
     
     .pass {
