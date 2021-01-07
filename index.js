@@ -88,7 +88,7 @@ app.get("/location", (req, res) => {
 
   console.log(ip);
   console.log(lookup(ip));
-  let query = lookup(ip).city;
+  let query = 'Lahore';
   fetch(`${base}weather?q=${query}&units=metric&APPID=${openWeatherMapAPI}`)
     .then((weather) => {
       return weather.json();
